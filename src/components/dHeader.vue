@@ -1,6 +1,8 @@
 <template>
   <header class="d-header">
     <div class="d-header__container">
+      <h1 class="visually-hidden">Dramatic – Movie streaming platform</h1>
+
       <a class="d-header__logo" href="#">
         <img src="../assets/d-logo.svg" width="180" height="49" alt="Dramatic logo.">
       </a>

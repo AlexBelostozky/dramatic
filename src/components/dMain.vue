@@ -1,13 +1,18 @@
 <template>
   <main class="d-main">
     {{ title }}
+    <dHero />
   </main>
 </template>
 
 <script>
+import dHero from '../components/dHero'
+
 export default {
   name: 'dMain',
-  components: {},
+  components: {
+    dHero
+  },
   props: {},
   data () {
     return {
