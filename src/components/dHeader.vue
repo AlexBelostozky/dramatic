@@ -33,10 +33,36 @@
         </ul>
       </nav>
 
-      <form action="#">
-        <input type="search" placeholder="Search">
-        <input type="submit">
+      <form class="d-header__search-form" action="#">
+        <input class="d-header__search-line" type="search" placeholder="Search">
+        <button class="d-header__search-button" type="submit">
+          <svg class="d-header__search-button-icon" width="21" height="21" fill="currentColor">
+            <title>Submit search query.</title>
+            <use href="../assets/icons/stack.svg#search-icon"></use>
+          </svg>
+        </button>
       </form>
+
+      <a class="d-header__gift-button" href="#">
+        <svg class="d-header__gift-button-icon" width="31" height="31" fill="currentColor">
+          <title>Your gifts.</title>
+          <use href="../assets/icons/stack.svg#gift-icon"></use>
+        </svg>
+      </a>
+
+      <a class="d-header__notification-button" href="#">
+        <svg class="d-header__notification-button-icon" width="31" height="31" fill="currentColor">
+          <title>Your notifications.</title>
+          <use href="../assets/icons/stack.svg#notification-icon"></use>
+        </svg>
+      </a>
+
+      <a class="d-header__account-button" href="#">
+        <svg class="d-header__account-button-icon" width="23" height="31" fill="currentColor">
+          <title>Your account.</title>
+          <use href="../assets/icons/stack.svg#account-icon"></use>
+        </svg>
+      </a>
     </div>
   </header>
 </template>
