@@ -1,6 +1,9 @@
 <template>
   <ul class="d-movies-list">
     <dMovieItem />
+    <dMovieItem />
+    <dMovieItem />
+    <dMovieItem />
   </ul>
 </template>
 
@@ -28,9 +31,10 @@ export default {
 
   .d-movies-list {
     box-sizing: border-box;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    display: grid;
+    grid-row-gap: 42px;
+    grid-column-gap: 42px;
+    grid-template-columns: repeat(6, 1fr);
     margin: 0;
     padding: 26px 23px;
     list-style: none;
