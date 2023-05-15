@@ -1,6 +1,6 @@
 <template>
   <footer class="d-footer">
-    {{ title }}
+    <p class="d-footer__copyright">© 2023 Dramatic. All Rights Reserved.</p>
   </footer>
 </template>
 
@@ -10,9 +10,7 @@ export default {
   components: {},
   props: {},
   data () {
-    return {
-      title: 'Footer'
-    }
+    return {}
   },
   computed: {},
   methods: {},

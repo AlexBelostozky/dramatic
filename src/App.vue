@@ -1,19 +1,20 @@
 <template>
-  <div id="app">
-    <dHeader />
-    <dMain />
-  </div>
+  <dHeader />
+  <dMain />
+  <dFooter />
 </template>
 
 <script>
 import dHeader from './components/dHeader'
 import dMain from './components/dMain'
+import dFooter from './components/dFooter'
 
 export default {
-  name: 'app',
+  name: 'dramatic-app',
   components: {
     dHeader,
-    dMain
+    dMain,
+    dFooter
   }
 }
 </script>
