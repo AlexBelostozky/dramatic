@@ -1,16 +1,19 @@
 <template>
   <main class="d-main">
-    <dResults />
+    <!-- <dResults /> -->
+    <dMovieCard />
   </main>
 </template>
 
 <script>
-import dResults from '../components/dResults'
+// import dResults from '../components/dResults'
+import dMovieCard from '../components/dMovieCard'
 
 export default {
   name: 'dMain',
   components: {
-    dResults
+    // dResults,
+    dMovieCard
   },
   props: {},
   data () {

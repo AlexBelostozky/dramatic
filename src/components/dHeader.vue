@@ -41,11 +41,17 @@ export default {
 <style scoped lang="less">
   @import '../assets/globalStyles/styles.less';
   .d-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
     background: linear-gradient(
       90.53deg,
       rgba(0, 0, 0, 0.75) 0.45%,
       rgba(102, 80, 165, 0.75) 105.51%
     );
+    backdrop-filter: blur(40px);
+    z-index: 2;
   }
   .d-header__container {
     box-sizing: border-box;
