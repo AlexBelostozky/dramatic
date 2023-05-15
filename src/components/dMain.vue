@@ -1,17 +1,17 @@
 <template>
   <main class="d-main">
     {{ title }}
-    <dHero />
+    <dResults />
   </main>
 </template>
 
 <script>
-import dHero from '../components/dHero'
+import dResults from '../components/dResults'
 
 export default {
   name: 'dMain',
   components: {
-    dHero
+    dResults
   },
   props: {},
   data () {

@@ -1,6 +1,22 @@
 <template>
   <li class="d-movie-item">
-    {{ title }}
+    <a class="d-movie-item__image-link" href="{{ movieCardSrc }}">
+      <img class="d-movie-item__image" src="{{ moviePosterSrc }}" width="168" height="237" alt="{{ moviePosterAltText }}">
+    </a>
+
+    <a class="d-movie-item__title-link" href="{{ movieCardSrc }}">
+      <h3 class="d-movie-item__title">{{ movieTitle }}</h3>
+    </a>
+
+    <dl class="d-movie-item__chars-list">
+      <dt class="d-movie-item__chars-rating">
+        <span class="visually-hidden">IMDb rating.</span>
+      </dt>
+      <dd class="d-movie-item__chars-rating-value">{{ ImdbRating }}</dd>
+
+      <dt class="d-movie-item__chars-year visually-hidden">Year.</dt>
+      <dd class="d-movie-item__chars-year-value">{{ year }}</dd>
+    </dl>
   </li>
 </template>
 
@@ -11,11 +27,23 @@ export default {
   props: {},
   data () {
     return {
-      title: 'MovieItem'
+      movieCardSrc: '#',
+      moviePosterSrc: '#',
+      moviePosterAltText: 'Poster of ',
+      movieTitle: '',
+      ImdbRating: 0,
+      year: 0
     }
   },
   computed: {},
-  methods: {},
+  methods: {
+    // Добавить метод составления ссылки на карточку фильма
+    // Добавить метод составления ссылки на постер
+    // Добавить метод составления альтернативного описания постера
+    // Добавить метод составления названия фильма
+    // Добавить метод составления рейтинга
+    // Добавить метод составления года
+  },
   watch: {}
 }
 </script>

@@ -1,13 +1,18 @@
 <template>
   <ul class="d-movies-list">
     {{ title }}
+    <dMovieItem />
   </ul>
 </template>
 
 <script>
+import dMovieItem from '../components/dMovieItem'
+
 export default {
   name: 'dMoviesList',
-  components: {},
+  components: {
+    dMovieItem
+  },
   props: {},
   data () {
     return {
