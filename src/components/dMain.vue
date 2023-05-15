@@ -1,6 +1,5 @@
 <template>
   <main class="d-main">
-    {{ title }}
     <dResults />
   </main>
 </template>
