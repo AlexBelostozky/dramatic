@@ -102,10 +102,12 @@ export default {
     margin: 0;
     padding: 0;
     border-radius: 0 19px 19px 0;
+    cursor: pointer;
 
     &:hover,
     &:focus {
       background-color: @darker-blue;
+      outline: none;
     }
 
     &:active {

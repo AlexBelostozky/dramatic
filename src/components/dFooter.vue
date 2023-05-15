@@ -29,12 +29,18 @@ export default {
   }
 
   .d-footer__wrapper {
+    box-sizing: border-box;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 41px;
+    padding: 41px 26px;
   }
 
   .d-footer__copyright {
+    font-family: 'Montserrat', "Arial", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: @light-gray;
     margin: 0 auto;
     padding: 0;
     text-align: center;
