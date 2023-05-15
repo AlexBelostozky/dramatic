@@ -1,7 +1,7 @@
 <template>
   <li class="d-movie-item">
     <a class="d-movie-item__image-link" href="{{ movieCardSrc }}">
-      <img class="d-movie-item__image" src="{{ moviePosterSrc }}" width="168" height="237" alt="{{ moviePosterAltText }}">
+      <img class="d-movie-item__image" src="{{ moviePosterSrc }}" width="168" height="237" alt="moviePosterAltText">
     </a>
 
     <a class="d-movie-item__title-link" href="{{ movieCardSrc }}">

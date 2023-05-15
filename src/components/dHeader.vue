@@ -8,7 +8,8 @@
       </a>
 
       <form class="d-header__search-form" action="#">
-        <input class="d-header__search-line" type="search" placeholder="Search">
+        <label class="visually-hidden" for="search-line">What you want to watch?</label>
+        <input class="d-header__search-line" id="#search-line" type="search" placeholder="Search">
         <button class="d-header__search-button" type="submit">
           <svg class="d-header__search-button-icon" width="21" height="21" fill="currentColor">
             <title>Submit search query.</title>
@@ -38,5 +39,77 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+  @import '../assets/globalStyles/styles.less';
+  .d-header {
+    background: linear-gradient(
+      90.53deg,
+      rgba(0, 0, 0, 0.75) 0.45%,
+      rgba(102, 80, 165, 0.75) 105.51%
+    );
+  }
+  .d-header__container {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    min-height: 93px;
+    margin: 0 auto;
+    padding: 26px;
+  }
 
+  .d-header__search-form {
+    display: flex;
+  }
+  .d-header__search-line {
+    padding: 8px 19px;
+    background-color: @blue;
+    border-radius: 19px 0 0 19px;
+    border: none;
+    font-family: 'Montserrat', "Arial", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: @white;
+    text-transform: uppercase;
+    width: 269px;
+    height: 37px;
+
+    &::placeholder {
+      font-family: 'Montserrat', "Arial", sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      color: @light-white;
+      text-transform: uppercase;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: @darker-blue;
+      outline: none;
+    }
+  }
+
+  .d-header__search-button {
+    color: @white;
+    background-color: @blue;
+    border: none;
+    width: 55px;
+    height: 37px;
+    line-height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 19px 19px 0;
+
+    &:hover,
+    &:focus {
+      background-color: @darker-blue;
+    }
+
+    &:active {
+      background-color: @darkest-blue;
+    }
+  }
 </style>
