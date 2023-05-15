@@ -1,6 +1,5 @@
 <template>
   <ul class="d-movies-list">
-    {{ title }}
     <dMovieItem />
   </ul>
 </template>
@@ -15,9 +14,7 @@ export default {
   },
   props: {},
   data () {
-    return {
-      title: 'MoviesList'
-    }
+    return {}
   },
   computed: {},
   methods: {},
@@ -27,5 +24,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+  @import '../assets/globalStyles/styles.less';
 
+  .d-movies-list {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 26px 23px;
+    list-style: none;
+  }
 </style>
