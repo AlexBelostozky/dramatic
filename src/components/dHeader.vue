@@ -9,8 +9,8 @@
 
       <form class="d-header__search-form" action="#">
         <label class="visually-hidden" for="search-line">What you want to watch?</label>
-        <input class="d-header__search-line" id="#search-line" type="search" placeholder="Search">
-        <button class="d-header__search-button" type="submit">
+        <input class="d-header__search-line" v-model="searchQuery" id="#search-line" type="search" placeholder="Search">
+        <button class="d-header__search-button" @click="searchMovies" type="submit">
           <svg class="d-header__search-button-icon" width="21" height="21" fill="currentColor">
             <title>Submit search query.</title>
             <use href="../assets/icons/stack.svg#search-icon"></use>
@@ -28,11 +28,36 @@ export default {
   props: {},
   data () {
     return {
-      title: 'Header'
+      title: 'Header',
+      searchQuery: '',
+      resultsData: {}
     }
   },
   computed: {},
-  methods: {},
+  methods: {
+    async searchMovies () {
+      if (this.searchQuery) {
+        const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${this.searchQuery}&include_adult=false&language=en-US&page=1`
+        const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZDNkZDMxMjNhZDA3ZTVlNTNiNjQ0NDVkYTgwYWRlMCIsInN1YiI6IjY0NjMzYWRmZGJiYjQyMDE3MGFhM2Q5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LHyQAdPEGj3bwKPx7bpmqyFi7CKrru1cinr28gel-ik'
+        const options = {
+          method: 'GET',
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${apiKey}`
+          }
+        }
+
+        try {
+          const response = await fetch(searchUrl, options)
+          const apiResponseData = await response.json()
+          console.log(apiResponseData)
+          this.resultsData = apiResponseData.results
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
+  },
   watch: {}
 }
 </script>

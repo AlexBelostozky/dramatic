@@ -1,5 +1,5 @@
 <template>
-  <article class="d-movie-card">
+  <article class="d-movie-card" :style="posterSrc">
     <div class="d-movie-card__wrapper">
       <div class="d-movie-card__info-wrapper">
         <h2 class="d-movie-card__title">{{ movieTitle }}</h2>
@@ -55,7 +55,21 @@ export default {
   data () {
     return {
       movieTitle: 'Movie Title',
-      imageSrc: 'poster.jpg',
+      // imageSrc: 'poster.jpg',
+      posterSrc: {
+        backgroundImage: `linear-gradient(
+          90deg,
+          #000000 25%,
+          rgba(0, 0, 0, 0.687449) 40%,
+          rgba(196, 196, 196, 0) 100%
+        ),
+        linear-gradient(
+          0deg, #000000 15%,
+          rgba(0, 0, 0, 0.687449) 30%,
+          rgba(255, 255, 255, 0) 40%
+        ),
+        url(${require('@/assets/poster.jpg')})`
+      },
       description: 'Movie description very long and interesting. Best movie in the whole world. Best cast and crew. Movie description very long and interesting. Best movie in the whole world. Best cast and crew.',
       genres: 'Genre1, genre2',
       ImdbRating: 7.3,
@@ -82,19 +96,19 @@ export default {
     box-sizing: border-box;
     padding-top: 170px;
     height: 100%;
-    background:
-    linear-gradient(
-       90deg,
-       #000000 25%,
-       rgba(0, 0, 0, 0.687449) 40%,
-       rgba(196, 196, 196, 0) 100%
-      ),
-      linear-gradient(
-       0deg, #000000 15%,
-       rgba(0, 0, 0, 0.687449) 30%,
-       rgba(255, 255, 255, 0) 40%
-      ),
-      url('../assets/poster.jpg');
+    // background:
+    // linear-gradient(
+    //    90deg,
+    //    #000000 25%,
+    //    rgba(0, 0, 0, 0.687449) 40%,
+    //    rgba(196, 196, 196, 0) 100%
+    //   ),
+    //   linear-gradient(
+    //    0deg, #000000 15%,
+    //    rgba(0, 0, 0, 0.687449) 30%,
+    //    rgba(255, 255, 255, 0) 40%
+    //   ),
+    //   url('../assets/poster.jpg');
     background-repeat: no-repeat;
     background-position: 100% 0;
     background-size: contain;
