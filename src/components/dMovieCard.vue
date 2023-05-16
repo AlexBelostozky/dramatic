@@ -213,4 +213,15 @@ export default {
     text-decoration: none;
     color: @white;
   }
+
+  .d-movie-card__crew-list {
+    display: grid;
+    grid-template-columns: repeat(7, min-content);
+    grid-column-gap: 41px;
+    grid-row-gap: 10px;
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 </style>
