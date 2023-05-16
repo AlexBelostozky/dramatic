@@ -2,8 +2,9 @@
   <section class="d-results">
     <div class="d-results__wrapper">
       <h2 class="d-results__title">{{ title }}</h2>
-      <p class="d-results__description">{{ description }}</p>
-      <!-- Добавить список с результатами выдачи -->
+
+      <p class="d-results__description" v-if="!someResults">{{ description }}</p>
+
       <dMoviesList
         v-bind:resultsDataList="resultsDataResults"
       />
@@ -25,19 +26,36 @@ export default {
       default () {
         return {}
       }
+    },
+    searchQueryResults: {
+      type: String,
+      default () {
+        return ''
+      }
     }
   },
   data () {
     return {
       title: 'Here will be the results of your search',
-      description: 'Use the field above to search movies'
+      description: 'Use the field above to search movies',
+      someResults: false
     }
   },
   computed: {},
   methods: {
     // Добавить метод замены заголовка и удаления описания
   },
-  watch: {}
+  watch: {
+    resultsDataResults (newResults) {
+      if (newResults.length !== 0) {
+        this.someResults = true
+        this.title = `Here is the results for "${this.searchQueryResults}"`
+      } else {
+        this.someResults = false
+        this.title = `There is no results for "${this.searchQueryResults}"`
+      }
+    }
+  }
 }
 </script>
 

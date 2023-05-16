@@ -1,20 +1,24 @@
 <template>
   <main class="d-main">
-    <dResults
+    <router-view>
+      <!-- <dResults
       v-bind:resultsDataResults="resultsDataMain"
-    />
-    <!-- <dMovieCard /> -->
+      v-bind:searchQueryResults="searchQueryMain"
+      /> -->
+
+      <!-- <dMovieCard /> -->
+    </router-view>
   </main>
 </template>
 
 <script>
-import dResults from '../components/dResults'
+// import dResults from '../components/dResults'
 // import dMovieCard from '../components/dMovieCard'
 
 export default {
   name: 'dMain',
   components: {
-    dResults
+    // dResults
     // dMovieCard
   },
   props: {
@@ -23,12 +27,16 @@ export default {
       default () {
         return {}
       }
+    },
+    searchQueryMain: {
+      type: String,
+      default () {
+        return ''
+      }
     }
   },
   data () {
-    return {
-      title: 'Main'
-    }
+    return {}
   },
   computed: {},
   methods: {},

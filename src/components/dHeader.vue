@@ -7,7 +7,7 @@
         <img src="../assets/d-logo.svg" width="180" height="49" alt="Dramatic logo.">
       </a>
 
-      <form class="d-header__search-form" action="#">
+      <form class="d-header__search-form" action="#" autocomplete="off">
         <label class="visually-hidden" for="search-line">What you want to watch?</label>
         <input class="d-header__search-line" v-model="searchQuery" id="#search-line" type="search" placeholder="Search">
         <button class="d-header__search-button" @click="searchMovies" type="submit">
@@ -28,7 +28,6 @@ export default {
   props: {},
   data () {
     return {
-      title: 'Header',
       searchQuery: '',
       resultsData: {}
     }
@@ -50,9 +49,10 @@ export default {
         try {
           const response = await fetch(searchUrl, options)
           const apiResponseData = await response.json()
-          console.log(apiResponseData)
           this.resultsData = apiResponseData.results
           this.$emit('shareResultsData', apiResponseData.results)
+          this.$emit('shareSearchQuery', this.searchQuery)
+          this.$router.push(`/results/${this.searchQuery}`)
         } catch (error) {
           console.log(error)
         }

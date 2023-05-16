@@ -1,24 +1,6 @@
 <template>
   <li class="d-movie-item">
-    <!-- <a class="d-movie-item__image-link" href="{{ movieCardSrc }}">
-      <img class="d-movie-item__image" :src="getPosterUrl()" width="168" height="237" :alt="getPosterAltText()">
-    </a>
-
-    <a class="d-movie-item__title-link" href="{{ movieCardSrc }}">
-      <h3 class="d-movie-item__title">{{ movieData.original_title }}</h3>
-    </a>
-
-    <dl class="d-movie-item__chars-list">
-      <dt class="d-movie-item__chars-rating">
-        <span class="visually-hidden">IMDb rating.</span>
-      </dt>
-      <dd class="d-movie-item__chars-rating-value">{{ fixRating() }}</dd>
-
-      <dt class="d-movie-item__chars-year visually-hidden">Year.</dt>
-      <dd class="d-movie-item__chars-year-value">{{ getYear() }}</dd>
-    </dl> -->
-
-    <a class="d-movie-item__link" href="{{ movieCardSrc }}">
+    <router-link class="d-movie-item__link" :to="`/movie-card/${movieData.id }`">
       <img class="d-movie-item__image" :src="getPosterUrl()" width="168" height="237" :alt="getPosterAltText()">
 
       <h3 class="d-movie-item__title">{{ movieData.original_title }}</h3>
@@ -32,7 +14,7 @@
         <dt class="d-movie-item__chars-year visually-hidden">Year.</dt>
         <dd class="d-movie-item__chars-year-value">{{ getYear() }}</dd>
       </dl>
-    </a>
+    </router-link>
   </li>
 </template>
 
@@ -73,7 +55,7 @@ export default {
 
     // Добавить метод составления альтернативного описания постера
     getPosterAltText () {
-      return `Poster of ${this.movieData.original_title}`
+      return `Poster of ${this.movieData.original_title}.`
     },
 
     // Метод для округления рейтинга
