@@ -1,9 +1,10 @@
 <template>
   <ul class="d-movies-list">
-    <dMovieItem />
-    <dMovieItem />
-    <dMovieItem />
-    <dMovieItem />
+    <dMovieItem
+      v-for="result in resultsDataList"
+      :key="result.id"
+      v-bind:movieData="result"
+    />
   </ul>
 </template>
 
@@ -15,7 +16,14 @@ export default {
   components: {
     dMovieItem
   },
-  props: {},
+  props: {
+    resultsDataList: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
   data () {
     return {}
   },

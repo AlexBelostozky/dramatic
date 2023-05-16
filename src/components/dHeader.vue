@@ -52,6 +52,7 @@ export default {
           const apiResponseData = await response.json()
           console.log(apiResponseData)
           this.resultsData = apiResponseData.results
+          this.$emit('shareResultsData', apiResponseData.results)
         } catch (error) {
           console.log(error)
         }
@@ -105,6 +106,7 @@ export default {
     text-transform: uppercase;
     width: 269px;
     height: 37px;
+    transition: all .2s ease-in-out;
 
     &::placeholder {
       font-family: 'Montserrat', "Arial", sans-serif;
@@ -134,6 +136,7 @@ export default {
     padding: 0;
     border-radius: 0 19px 19px 0;
     cursor: pointer;
+    transition: all .2s ease-in-out;
 
     &:hover,
     &:focus {

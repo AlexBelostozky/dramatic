@@ -4,7 +4,9 @@
       <h2 class="d-results__title">{{ title }}</h2>
       <p class="d-results__description">{{ description }}</p>
       <!-- Добавить список с результатами выдачи -->
-      <dMoviesList />
+      <dMoviesList
+        v-bind:resultsDataList="resultsDataResults"
+      />
     </div>
   </section>
 </template>
@@ -17,7 +19,14 @@ export default {
   components: {
     dMoviesList
   },
-  props: {},
+  props: {
+    resultsDataResults: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
   data () {
     return {
       title: 'Here will be the results of your search',
@@ -36,6 +45,9 @@ export default {
 <style scoped lang="less">
   @import '../assets/globalStyles/styles.less';
 
+  .d-results {
+    padding-top: 105px;
+  }
   .d-results__wrapper {
     box-sizing: border-box;
     max-width: 1440px;

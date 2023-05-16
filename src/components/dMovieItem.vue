@@ -1,48 +1,101 @@
 <template>
   <li class="d-movie-item">
-    <a class="d-movie-item__image-link" href="{{ movieCardSrc }}">
-      <img class="d-movie-item__image" src="{{ moviePosterSrc }}" width="168" height="237" alt="moviePosterAltText">
+    <!-- <a class="d-movie-item__image-link" href="{{ movieCardSrc }}">
+      <img class="d-movie-item__image" :src="getPosterUrl()" width="168" height="237" :alt="getPosterAltText()">
     </a>
 
     <a class="d-movie-item__title-link" href="{{ movieCardSrc }}">
-      <h3 class="d-movie-item__title">{{ movieTitle }}</h3>
+      <h3 class="d-movie-item__title">{{ movieData.original_title }}</h3>
     </a>
 
     <dl class="d-movie-item__chars-list">
       <dt class="d-movie-item__chars-rating">
         <span class="visually-hidden">IMDb rating.</span>
       </dt>
-      <dd class="d-movie-item__chars-rating-value">{{ imdbRating }}</dd>
+      <dd class="d-movie-item__chars-rating-value">{{ fixRating() }}</dd>
 
       <dt class="d-movie-item__chars-year visually-hidden">Year.</dt>
-      <dd class="d-movie-item__chars-year-value">{{ year }}</dd>
-    </dl>
+      <dd class="d-movie-item__chars-year-value">{{ getYear() }}</dd>
+    </dl> -->
+
+    <a class="d-movie-item__link" href="{{ movieCardSrc }}">
+      <img class="d-movie-item__image" :src="getPosterUrl()" width="168" height="237" :alt="getPosterAltText()">
+
+      <h3 class="d-movie-item__title">{{ movieData.original_title }}</h3>
+
+      <dl class="d-movie-item__chars-list">
+        <dt class="d-movie-item__chars-rating">
+          <span class="visually-hidden">IMDb rating.</span>
+        </dt>
+        <dd class="d-movie-item__chars-rating-value">{{ fixRating() }}</dd>
+
+        <dt class="d-movie-item__chars-year visually-hidden">Year.</dt>
+        <dd class="d-movie-item__chars-year-value">{{ getYear() }}</dd>
+      </dl>
+    </a>
   </li>
 </template>
 
 <script>
+// import { url } from 'inspector'
+
 export default {
   name: 'dMovieItem',
   components: {},
-  props: {},
+  props: {
+    movieData: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
   data () {
     return {
       movieCardSrc: '#',
       moviePosterSrc: '#',
-      moviePosterAltText: 'Poster of ',
       movieTitle: 'Movie Title',
-      imdbRating: 0.1,
-      year: 1990
+      emptyPosterSrc: `${require('@/assets/empty-poster.jpg')}`
     }
   },
   computed: {},
   methods: {
     // Добавить метод составления ссылки на карточку фильма
+
     // Добавить метод составления ссылки на постер
+    getPosterUrl () {
+      if (this.movieData.poster_path !== null) {
+        return `https://image.tmdb.org/t/p/w500${this.movieData.poster_path}`
+      } else {
+        return this.emptyPosterSrc
+      }
+    },
+
     // Добавить метод составления альтернативного описания постера
-    // Добавить метод составления названия фильма
-    // Добавить метод составления рейтинга
-    // Добавить метод составления года
+    getPosterAltText () {
+      return `Poster of ${this.movieData.original_title}`
+    },
+
+    // Метод для округления рейтинга
+    fixRating () {
+      const rawRating = this.movieData.vote_average
+
+      if (Math.floor(rawRating) === rawRating) {
+        return rawRating
+      } else {
+        return rawRating.toFixed(1)
+      }
+    },
+
+    // Метод для получения года выпуска
+    getYear () {
+      const rawDate = this.movieData.release_date
+
+      if (rawDate !== '') {
+        return rawDate.split('-')[0]
+      }
+      return '🤷‍♂️'
+    }
   },
   watch: {}
 }
@@ -60,7 +113,7 @@ export default {
     width: 168px;
   }
 
-  .d-movie-item__image-link {
+  .d-movie-item__link {
     font-family: 'Montserrat', "Arial", sans-serif;
     font-weight: 600;
     font-size: 16px;
@@ -68,31 +121,38 @@ export default {
     color: @white;
     text-decoration: none;
     margin: 0;
-    margin-bottom: 10px;
-    padding: 0;
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all .2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: @gray;
+      transform: scale(1.02);
+      outline: none;
+    }
+
+    &:active {
+      transform: scale(1);
+    }
   }
 
   .d-movie-item__image {
     font-size: 16px;
     line-height: 20px;
-  }
-
-  .d-movie-item__title-link {
-    font-family: 'Montserrat', "Arial", sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    color: @white;
-    text-decoration: none;
-    word-break: break-all;
-    margin: 0;
-    margin-bottom: 4px;
-    padding: 0;
+    border-radius: 4px;
+    margin-bottom: 10px;
   }
 
   .d-movie-item__title {
+    font-family: 'Montserrat', "Arial", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
     margin: 0;
-    word-break: break-all;
+    margin-bottom: 10px;
+    word-break: break-word;
   }
 
   .d-movie-item__chars-list {
@@ -112,7 +172,7 @@ export default {
     background-image: url("../assets/icons/imdb-icon.png");
     background-repeat: no-repeat;
     background-size: contain;
-    margin-right: 5px;
+    margin-right: 8px;
   }
 
   .d-movie-item__chars-rating-value {

@@ -26,7 +26,7 @@ export default {
 <style scoped lang="less">
   @import '../assets/globalStyles/styles.less';
   .d-footer {
-    background-color: @dark-grey;
+    background-color: @dark-gray;
     padding: 0;
   }
 

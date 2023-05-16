@@ -1,6 +1,10 @@
 <template>
-  <dHeader />
-  <dMain />
+  <dHeader
+    @shareResultsData="updateResultsData"
+  />
+  <dMain
+    v-bind:resultsDataMain="resultsData"
+  />
   <dFooter />
 </template>
 
@@ -15,6 +19,16 @@ export default {
     dHeader,
     dMain,
     dFooter
+  },
+  data () {
+    return {
+      resultsData: {}
+    }
+  },
+  methods: {
+    updateResultsData (data) {
+      this.resultsData = data
+    }
   }
 }
 </script>

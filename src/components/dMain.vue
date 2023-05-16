@@ -1,21 +1,30 @@
 <template>
   <main class="d-main">
-    <!-- <dResults /> -->
-    <dMovieCard />
+    <dResults
+      v-bind:resultsDataResults="resultsDataMain"
+    />
+    <!-- <dMovieCard /> -->
   </main>
 </template>
 
 <script>
-// import dResults from '../components/dResults'
-import dMovieCard from '../components/dMovieCard'
+import dResults from '../components/dResults'
+// import dMovieCard from '../components/dMovieCard'
 
 export default {
   name: 'dMain',
   components: {
-    // dResults,
-    dMovieCard
+    dResults
+    // dMovieCard
   },
-  props: {},
+  props: {
+    resultsDataMain: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
   data () {
     return {
       title: 'Main'

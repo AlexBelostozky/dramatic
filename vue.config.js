@@ -5,7 +5,7 @@ module.exports = defineConfig({
     loaderOptions: {
       less: {
         // eslint-disable-next-line quotes
-        prependData: `import "@/assets/globalStyles/styles.less";`
+        // prependData: `import "@/assets/globalStyles/styles.less";`
       }
     }
   }
