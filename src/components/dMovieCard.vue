@@ -56,6 +56,8 @@ export default {
   props: {},
   data () {
     return {
+      movieId: this.$store.state.selectedMovieId,
+      resultsData: {},
       movieTitle: 'Movie Title',
       // imageSrc: 'poster.jpg',
       posterSrc: {
@@ -80,11 +82,39 @@ export default {
       trailerImageSrc: '#'
     }
   },
-  computed: {},
+  computed: {
+    update () {
+      const movieId = this.$store.state.selectedMovieId
+
+      return this.searchMovieDetails(movieId)
+    }
+  },
   methods: {
     // создать методы для составления альтернативного описания превью и лого
     // создать метод для составления перечисления жанров
     // создать метод для добавления участников команды
+
+    async searchMovieDetails (id) {
+      const apiKey = '6d3dd3123ad07e5e53b64445da80ade0'
+      const searchUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+      const options = {
+        method: 'GET'
+        // headers: {
+        //   accept: 'application/json',
+        //   Authorization: `Bearer ${apiKey}`
+        // }
+      }
+
+      try {
+        const response = await fetch(searchUrl, options)
+        const apiResponseData = await response.json()
+        this.resultsData = apiResponseData.results
+        // this.$emit('shareResultsData', apiResponseData.results)
+        // this.$emit('shareSearchQuery', this.searchQuery)
+      } catch (error) {
+        console.log(error)
+      }
+    },
 
     closeMovieCard () {
       this.$emit('closeMovieCard')
