@@ -1,28 +1,30 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-// import dMain from '../components/dMain'
-import dResults from '../components/dResults'
+import { createRouter, createWebHistory } from 'vue-router'
+import dResultsWrapper from '../components/dResultsWrapper'
 import dMovieCard from '../components/dMovieCard'
 
 const routes = [
   {
     path: '',
     name: 'start',
-    component: dResults
+    component: dResultsWrapper,
+    props: true
   },
   {
     path: '/results/:searchQuery',
     name: 'results',
-    component: dResults
+    component: dResultsWrapper,
+    props: true
   },
   {
     path: '/movie-card/:id',
     name: 'movieCard',
-    component: dMovieCard
+    component: dMovieCard,
+    props: true
   }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 

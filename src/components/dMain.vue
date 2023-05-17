@@ -1,25 +1,27 @@
 <template>
   <main class="d-main">
-    <router-view>
-      <!-- <dResults
-      v-bind:resultsDataResults="resultsDataMain"
-      v-bind:searchQueryResults="searchQueryMain"
-      /> -->
+    <dResults
+    v-if="!showMovieCard"
+    v-bind:resultsDataResults="resultsDataMain"
+    v-bind:searchQueryResults="searchQueryMain"
+    />
 
-      <!-- <dMovieCard /> -->
-    </router-view>
+    <dMovieCard v-if="showMovieCard"
+      @closeMovieCard="escapeMovieCard"
+    />
   </main>
 </template>
 
 <script>
-// import dResults from '../components/dResults'
-// import dMovieCard from '../components/dMovieCard'
+import dResults from '../components/dResults'
+import dMovieCard from '../components/dMovieCard'
+// import store from '@/store'
 
 export default {
   name: 'dMain',
   components: {
-    // dResults
-    // dMovieCard
+    dResults,
+    dMovieCard
   },
   props: {
     resultsDataMain: {
@@ -36,11 +38,23 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      showMovieCard: false
+    }
   },
   computed: {},
-  methods: {},
-  watch: {}
+  methods: {
+    //
+    escapeMovieCard () {
+      this.showMovieCard = false
+    }
+  },
+  watch: {
+    '$store.state.selectedMovieId': function () {
+      this.showMovieCard = true
+      console.log(this.$store.state.selectedMovieId)
+    }
+  }
 }
 </script>
 

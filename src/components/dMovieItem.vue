@@ -1,6 +1,6 @@
 <template>
   <li class="d-movie-item">
-    <router-link class="d-movie-item__link" :to="`/movie-card/${movieData.id }`">
+    <a class="d-movie-item__link" @click.prevent="shareSelectedMovieId" :href="`/movie-card/${movieData.id}`">
       <img class="d-movie-item__image" :src="getPosterUrl()" width="168" height="237" :alt="getPosterAltText()">
 
       <h3 class="d-movie-item__title">{{ movieData.original_title }}</h3>
@@ -14,12 +14,14 @@
         <dt class="d-movie-item__chars-year visually-hidden">Year.</dt>
         <dd class="d-movie-item__chars-year-value">{{ getYear() }}</dd>
       </dl>
-    </router-link>
+    </a>
   </li>
 </template>
 
 <script>
 // import { url } from 'inspector'
+
+import store from '@/store'
 
 export default {
   name: 'dMovieItem',
@@ -42,7 +44,10 @@ export default {
   },
   computed: {},
   methods: {
-    // Добавить метод составления ссылки на карточку фильма
+    // Метод передачи ID выбранного фильма
+    shareSelectedMovieId () {
+      store.commit('updateSelectedMovieId', this.movieData.id)
+    },
 
     // Добавить метод составления ссылки на постер
     getPosterUrl () {

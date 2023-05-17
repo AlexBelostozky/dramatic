@@ -3,7 +3,7 @@
     <div class="d-results__wrapper">
       <h2 class="d-results__title">{{ title }}</h2>
 
-      <p class="d-results__description" v-if="!someResults">{{ description }}</p>
+      <p class="d-results__description" v-if="!$store.state.someResults">{{ description }}</p>
 
       <dMoviesList
         v-bind:resultsDataList="resultsDataResults"
@@ -14,6 +14,7 @@
 
 <script>
 import dMoviesList from '../components/dMoviesList'
+import store from '@/store'
 
 export default {
   name: 'dResults',
@@ -37,21 +38,30 @@ export default {
   data () {
     return {
       title: 'Here will be the results of your search',
-      description: 'Use the field above to search movies',
-      someResults: false
+      description: 'Use the field above to search movies'
+      // someResults: false
     }
   },
-  computed: {},
+  computed: {
+    // beforeCreate () {
+    //   console.log('beforeCreate dResults')
+    //   return this.updateHeading()
+    // }
+  },
   methods: {
-    // Добавить метод замены заголовка и удаления описания
+    // Метод для сихронизации заголовка с поисковым запросом
+    updateHeading () {
+      store.commit('updateSomeResults', true)
+      this.title = `Here are the results for "${this.searchQueryResults}"`
+    }
   },
   watch: {
+    // Метод для замены заголовка и удаления описания
     resultsDataResults (newResults) {
       if (newResults.length !== 0) {
-        this.someResults = true
-        this.title = `Here is the results for "${this.searchQueryResults}"`
+        this.updateHeading()
       } else {
-        this.someResults = false
+        store.commit('updateSomeResults', false)
         this.title = `There is no results for "${this.searchQueryResults}"`
       }
     }

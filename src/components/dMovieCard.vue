@@ -1,6 +1,7 @@
 <template>
   <article class="d-movie-card" :style="posterSrc">
     <div class="d-movie-card__wrapper">
+      <a class="d-movie-card__back-button" href="/results/:searchQuery" @click.prevent="closeMovieCard">&lt; Back to results</a>
       <div class="d-movie-card__info-wrapper">
         <h2 class="d-movie-card__title">{{ movieTitle }}</h2>
 
@@ -45,6 +46,7 @@
 
 <script>
 import dMemberCard from '../components/dMemberCard'
+// import store from '@/store'
 
 export default {
   name: 'dMovieCard',
@@ -83,6 +85,10 @@ export default {
     // создать методы для составления альтернативного описания превью и лого
     // создать метод для составления перечисления жанров
     // создать метод для добавления участников команды
+
+    closeMovieCard () {
+      this.$emit('closeMovieCard')
+    }
   },
   watch: {}
 }
@@ -112,6 +118,34 @@ export default {
     background-repeat: no-repeat;
     background-position: 100% 0;
     background-size: contain;
+  }
+
+  .d-movie-card__back-button {
+    display: block;
+    box-sizing: border-box;
+    font-family: 'Montserrat', "Arial", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: @white;
+    text-decoration: none;
+    width: 165px;
+    margin-bottom: 50px;
+    padding: 15px 10px;
+    background-color: @dark-gray;
+    border-radius: 8px;
+    transition: all .2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: @gray;
+      transform: scale(1.02);
+      outline: none;
+    }
+
+    &:active {
+      transform: scale(1);
+    }
   }
 
   .d-movie-card__wrapper {

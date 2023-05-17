@@ -52,7 +52,7 @@ export default {
           this.resultsData = apiResponseData.results
           this.$emit('shareResultsData', apiResponseData.results)
           this.$emit('shareSearchQuery', this.searchQuery)
-          this.$router.push(`/results/${this.searchQuery}`)
+          // this.$router.push(`/results/${this.searchQuery}`)
         } catch (error) {
           console.log(error)
         }
